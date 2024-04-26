@@ -12,15 +12,13 @@ func main() {
 	host := flag.String("host", "localhost", "redis host")
 	port := flag.String("port", "6379", "redis port")
 	password := flag.String("password", "", "redis password")
-
+	db := flag.Int("db", 0, "redis db")
 	delKeyPrefix := flag.String("key", "", "redis del key prefix")
 
 	flag.Parse()
 	if *delKeyPrefix == "" {
 		return
 	}
-
-	db := flag.Int("db", 0, "redis db")
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%s", *host, *port),
